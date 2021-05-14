@@ -1,3 +1,2 @@
-
-rootProject.name = "spring-batch-concurrent"
+rootProject.name = "elasticsearch-kotlin"
 

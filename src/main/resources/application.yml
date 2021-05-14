@@ -1,0 +1,10 @@
+es.index:
+  indexName: "record"
+  clientNames: 
+    - "Alice"
+    - "Bob"
+    - "Caroline"
+    - "Donald"
+    - "Elena"
+    - "Fred"
+    - "Jerry"

@@ -1,19 +1,15 @@
-package ilia.isakhin.batch
+package ilia.isakhin.es.async
 
-import com.fasterxml.jackson.core.type.TypeReference
-import ilia.isakhin.batch.controller.SearchController
-import ilia.isakhin.batch.service.EsSearchService
+import ilia.isakhin.es.async.controller.SearchController
+import ilia.isakhin.es.async.service.EsSearchService
 import org.elasticsearch.action.ActionListener
 import org.elasticsearch.action.ActionResponse
-import org.elasticsearch.action.StepListener
-import org.elasticsearch.action.search.SearchResponse
 import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
 import org.elasticsearch.client.asyncsearch.AsyncSearchResponse
 import org.elasticsearch.client.asyncsearch.SubmitAsyncSearchRequest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.Mockito
 import org.mockito.Mockito.*
 import org.mockito.internal.stubbing.answers.AnswersWithDelay
 import org.springframework.beans.factory.annotation.Autowired

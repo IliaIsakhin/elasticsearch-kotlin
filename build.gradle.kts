@@ -1,5 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val esVersion: String by project
+val coroutinesVersion: String by project
+
 plugins {
     id("org.springframework.boot") version "2.4.3"
     id ("io.spring.dependency-management") version "1.0.11.RELEASE"
@@ -15,16 +18,14 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.32")
-    implementation("org.springframework.boot:spring-boot-starter-batch")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.4.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$coroutinesVersion")
 
-    implementation("org.elasticsearch:elasticsearch:7.12.0")
-    implementation("org.elasticsearch.client:elasticsearch-rest-client:7.12.0")
-    implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.12.0")
+    implementation("org.elasticsearch:elasticsearch:$esVersion")
+    implementation("org.elasticsearch.client:elasticsearch-rest-client:$esVersion")
+    implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:$esVersion")
 
     testImplementation(kotlin("test-junit5"))
     testImplementation("org.springframework.boot:spring-boot-starter-test")
