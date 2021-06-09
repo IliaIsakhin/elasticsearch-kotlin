@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity
 class SearchController(private val searchService: EsSearchService) {
 
     @GetMapping("/search")
-    suspend fun search(@RequestParam("query") query: String) = with(ResponseEntity.ok()) {
+    fun search(@RequestParam("query") query: String) = with(ResponseEntity.ok()) {
         contentType(MediaType.APPLICATION_JSON)
         body(searchService.search(query))
     }

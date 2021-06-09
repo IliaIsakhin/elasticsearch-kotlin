@@ -3,6 +3,7 @@ package ilia.isakhin.es.async.client
 import org.elasticsearch.action.ActionListener
 import org.elasticsearch.action.bulk.BulkRequest
 import org.elasticsearch.action.bulk.BulkResponse
+import org.elasticsearch.action.search.SearchRequest
 import org.elasticsearch.action.search.SearchResponse
 import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
@@ -17,12 +18,7 @@ import kotlin.coroutines.suspendCoroutine
 @Service
 class EsSearchClient(private val client: RestHighLevelClient) {
 
-    suspend fun search(request: SubmitAsyncSearchRequest) =
-        suspendCoroutine<SearchResponse> { continuation ->
-            val callback = AsyncSearchResponseActionListener(continuation)
-
-            client.asyncSearch().submitAsync(request, RequestOptions.DEFAULT, callback)
-        }
+    fun search(request: SearchRequest): SearchResponse = client.search(request, RequestOptions.DEFAULT)
 
     fun bulkInsert(bulk: BulkRequest): BulkResponse = client.bulk(bulk, RequestOptions.DEFAULT)
 }
