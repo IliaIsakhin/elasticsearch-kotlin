@@ -2,7 +2,7 @@ package ilia.isakhin.es.async.service
 
 import ilia.isakhin.es.async.client.EsSearchClient
 import ilia.isakhin.es.async.loggerFor
-import ilia.isakhin.es.async.prop.EsProperties
+import ilia.isakhin.es.async.config.EsProperties
 import org.elasticsearch.action.bulk.BulkRequest
 import org.elasticsearch.action.index.IndexRequest
 import org.springframework.stereotype.Service
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service
 class EsDataGenerator(private val esSearchClient: EsSearchClient, esProperties: EsProperties) {
 
     private val indexName = esProperties.indexName
-    private val clientNames = esProperties.clientNames
+    private val clientNames = listOf("Alice", "Bob", "Caroline")
 
     fun generateRandomData(size: Int) {
         val chunks = splitChunks(size)
@@ -45,6 +45,6 @@ class EsDataGenerator(private val esSearchClient: EsSearchClient, esProperties: 
     companion object {
         private const val BULK_SIZE = 100
         
-        private val log = loggerFor<EsDataGenerator>() 
+        private val log = loggerFor<EsDataGenerator>()
     }
 }

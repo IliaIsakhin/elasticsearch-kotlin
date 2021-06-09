@@ -1,10 +1,5 @@
 es.index:
   indexName: "record"
-  clientNames: 
-    - "Alice"
-    - "Bob"
-    - "Caroline"
-    - "Donald"
-    - "Elena"
-    - "Fred"
-    - "Jerry"
+  host: "localhost"
+  port: 9200
+#  port: 80
