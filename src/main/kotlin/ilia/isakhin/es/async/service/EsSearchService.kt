@@ -18,7 +18,8 @@ class EsSearchService(private val esSearchClient: EsSearchClient, esProperties: 
 
     suspend fun search(term: String): List<String> {
         val sourceBuilder = SearchSourceBuilder().apply {
-            query(QueryBuilders.termQuery("name", term))
+            query(QueryBuilders.wildcardQuery("name", term))
+            aggregation(AggregationBuilders.stats("agg").field("count"))
             size(10_000)
         }
         val searchRequest = SubmitAsyncSearchRequest(sourceBuilder, indexNames).apply {
