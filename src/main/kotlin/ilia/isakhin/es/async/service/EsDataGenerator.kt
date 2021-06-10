@@ -6,21 +6,30 @@ import ilia.isakhin.es.async.config.EsProperties
 import org.elasticsearch.action.bulk.BulkRequest
 import org.elasticsearch.action.index.IndexRequest
 import org.springframework.stereotype.Service
+import java.time.LocalDate
+import java.util.UUID
+import java.util.concurrent.ThreadLocalRandom
 
 @Service
 class EsDataGenerator(private val esSearchClient: EsSearchClient, esProperties: EsProperties) {
 
     private val indexName = esProperties.indexName
-    private val clientNames = listOf("Alice", "Bob", "Caroline")
 
     fun generateRandomData(size: Int) {
         val chunks = splitChunks(size)
-
+        val r = ThreadLocalRandom.current()
+        
         chunks.forEach {
             val bulk = BulkRequest()
             repeat(it) {
                 bulk.add(IndexRequest(indexName).apply {
-                    source(mapOf("name" to clientNames.random()))
+                    source(
+                        mapOf(
+                            "name" to UUID.randomUUID().toString(),
+                            "date" to LocalDate.of(r.nextInt(2000), r.nextInt(1, 12), r.nextInt(1, 28)),
+                            "count" to r.nextInt(1000),
+                        )
+                    )
                 })
             }
             
@@ -43,7 +52,7 @@ class EsDataGenerator(private val esSearchClient: EsSearchClient, esProperties: 
     }
 
     companion object {
-        private const val BULK_SIZE = 100
+        private const val BULK_SIZE = 1_000
         
         private val log = loggerFor<EsDataGenerator>()
     }

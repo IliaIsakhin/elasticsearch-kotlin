@@ -20,8 +20,6 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    
-    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
 
     implementation("org.elasticsearch:elasticsearch:$esVersion")
     implementation("org.elasticsearch.client:elasticsearch-rest-client:$esVersion")

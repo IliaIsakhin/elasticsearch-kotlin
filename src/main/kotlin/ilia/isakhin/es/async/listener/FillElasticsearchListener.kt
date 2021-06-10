@@ -10,6 +10,6 @@ class FillElasticsearchListener(private val esDataGenerator: EsDataGenerator) {
 
     @EventListener(value = [ApplicationReadyEvent::class])
     fun onReady() {
-        esDataGenerator.generateRandomData(10_000)
+        // esDataGenerator.generateRandomData(400_000)
     }
 }
